@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+message RpcRequest {
+    string id = 1;
+    string service_name = 2;
+    string method_name = 3;
+    repeated BinaryValue params = 4;
+}
+
+message RpcResponse {
+    string id = 1;
+    Exception exception = 2;
+    BinaryValue returns = 3;
+}
+
+message String {
+    string msg = 1;
+}
+
+message ResponseMessage {
+    RpcResponse response = 1;
+}
+
+message BinaryValue {
+    bool isNull = 1;
+    repeated bytes array = 2;
+    bytes one = 3;
+}
+
+message Exception {
+    string message = 1;
+    string stackTrace = 2;
+}
