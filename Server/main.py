@@ -18,7 +18,7 @@ class Server:
     def start(self):
         while True:
             client_socket, addr = self.server_socket.accept()
-            print(f"somebody connected: {addr}!!!!")
+            print(f"somebody connected: {addr}!!!")
             client_handler = threading.Thread(target=self.handle_client, args=(client_socket,))
             client_handler.start()
 
@@ -38,7 +38,7 @@ class Server:
                         if request.method_name == "auth":
                             result = auth(request.id)
                             send_message(client_socket, result)
-                            print("test auth handled!!1!")
+                            print("test auth handled")
                 else:
                     print("ping received, sending pong!")
                     client_socket.send((1).to_bytes(4, byteorder='big') + bytes([0x01]))
@@ -63,4 +63,5 @@ def auth(rpcId):
 
 if __name__ == "__main__":
     server = Server("0.0.0.0", 2222)
+
     server.start()
